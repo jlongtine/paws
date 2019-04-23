@@ -22,16 +22,28 @@ Paws.App = (function () {
         //Home
         'home': {href: '/console'},
         // Services
+        'acm': {href: '/acm/home'},
+        'cb': {href: '/codesuite/codebuild/projects'},
         'ct': {href: '/cloudtrail/home#/events'},
+        'cfn': {href: '/cloudformation/home'},
+        'ccw': {href: '/cloudwatch/home'},
+        'cwe': {href: '/cloudwatch/home#events:'},
+        'cwl': {href: '/cloudwatch/home#logs:'},
+        'cwa': {href: '/cloudwatch/home#alarm:'},
         'ec2': {href: '/ec2/v2/home#Instances:sort=desc:launchTime'},
-        'sec': {href: '/elasticache/home#cache-clusters:'},
+        'eks': {href: '/eks/home'},
+        'ecs': {href: '/ecs/home'},
+        'ecr': {href: '/ecr/repositories'},
+        'kms': {href: '/kms/home'},
+        'ssm': {href: '/systems-manager/home'},
+        'sec': {href: '/elasticache/home'},
         'iam': {href: '/iam/home#home'},
+        'params': {href: '/systems-manager/parameters'},
         'r53': {href: '/route53/home#hosted-zones:'},
         'rds': {href: '/rds/home#dbinstances:'},
         'red': {href: '/redshift/home#cluster-list:'},
-        'ss3': {href: '/s3/home'},
+        's3': {href: '/s3/home'},
         'vpc': {href: '/vpc/home'},
-        'cft': {href: '/cloudformation/home'},
         'da': {href: '/lambda/home'},
         // Pages
         'img': {href: '/ec2/v2/home#Images:sort=name'},
@@ -44,10 +56,12 @@ Paws.App = (function () {
         'l': {func: ['navbar', 'select']},
         'return': {func: ['navbar', 'select']}, // This doesn't work on some services
         // Miscellaneous
-        '/': {focus: '.gwt-TextBox:first'},
+        '/': {focus: '#awsc-services-search-autocomplete'},
         '?': {open: 'https://github.com/tombenner/paws#shortcuts'},
         // lambda searchbox ???? WIP
-        'lam': {focus: '.inputAndSuggestions.input'}
+        'lam': {focus: '.inputAndSuggestions.input'},
+        'z': {click: 'nav-servicesMenu'},
+        'reg': {click: 'nav-regionMenu'}
     };
 
     self.init = function () {
@@ -82,6 +96,12 @@ Paws.App = (function () {
                     var func = value['func'];
                     self[func[0]][func[1]]();
                 };
+            } else if (value['click']) {
+                callback = function() {
+                    self.log('Clicking ' + value['click']);
+                    document.getElementById(value['click']).click();
+                };
+
             } else {
                 self.log('Invalid callback');
             }
