@@ -56,7 +56,7 @@ Paws.App = (function () {
         'l': {func: ['navbar', 'select']},
         'return': {func: ['navbar', 'select']}, // This doesn't work on some services
         // Miscellaneous
-        '/': {focus: '#awsc-services-search-autocomplete'},
+        '/': {click: 'nav-servicesMenu'},
         '?': {open: 'https://github.com/tombenner/paws#shortcuts'},
         // lambda searchbox ???? WIP
         'lam': {focus: '.inputAndSuggestions.input'},
