@@ -61,7 +61,28 @@ Paws.App = (function () {
         // lambda searchbox ???? WIP
         'lam': {focus: '.inputAndSuggestions.input'},
         'z': {click: 'nav-servicesMenu'},
-        'reg': {click: 'nav-regionMenu'}
+
+        // Regions
+        'reg': {click: 'nav-regionMenu'},
+        'use2': {region: 'us-east-2'},
+        'use1': {region: 'us-east-1'},
+        'usw1': {region: 'us-west-1'},
+        'usw2': {region: 'us-west-2'},
+        'aps1': {region: 'ap-south-1'},
+        'apne3': {region: 'ap-northeast-3'},
+        'apne2': {region: 'ap-northeast-2'},
+        'apse1': {region: 'ap-southeast-1'},
+        'apse2': {region: 'ap-southeast-2'},
+        'apne1': {region: 'ap-northeast-1'},
+        'cac1': {region: 'ca-central-1'},
+        'cnn1': {region: 'cn-north-1'},
+        'cnnw1': {region: 'cn-northwest-1'},
+        'euc1': {region: 'eu-central-1'},
+        'euw1': {region: 'eu-west-1'},
+        'euw2': {region: 'eu-west-2'},
+        'euw3': {region: 'eu-west-3'},
+        'eun1': {region: 'eu-north-1'},
+        'sae1': {region: 'sa-east-1'}
     };
 
     self.init = function () {
@@ -101,7 +122,11 @@ Paws.App = (function () {
                     self.log('Clicking ' + value['click']);
                     document.getElementById(value['click']).click();
                 };
-
+            } else if (value['region']) {
+                callback = function() {
+                    self. log('Switching to region: ' + value['region']);
+                    document.querySelector("#regionMenuContent > a.region[data-region-id='" + value['region'] + "']").click();
+                };
             } else {
                 self.log('Invalid callback');
             }
