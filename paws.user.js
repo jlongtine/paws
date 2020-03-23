@@ -64,6 +64,7 @@ Paws.App = (function () {
 
         // Regions
         'reg': {click: 'nav-regionMenu'},
+        'acc': {click: 'nav-usernameMenu'},
         'use2': {region: 'us-east-2'},
         'use1': {region: 'us-east-1'},
         'usw1': {region: 'us-west-1'},
@@ -82,7 +83,7 @@ Paws.App = (function () {
         'euw2': {region: 'eu-west-2'},
         'euw3': {region: 'eu-west-3'},
         'eun1': {region: 'eu-north-1'},
-        'sae1': {region: 'sa-east-1'}
+        'sae1': {region: 'sa-east-1'},
     };
 
     self.init = function () {
@@ -124,8 +125,13 @@ Paws.App = (function () {
                 };
             } else if (value['region']) {
                 callback = function() {
-                    self. log('Switching to region: ' + value['region']);
+                    self.log('Switching to region: ' + value['region']);
                     document.querySelector("#regionMenuContent > a.region[data-region-id='" + value['region'] + "']").click();
+                };
+            } else if (value['account']) {
+                callback = function() {
+                    self.log('Switching to account: ' + value['account']);
+                    document.querySelector("form[data-aesr-profile='"+ value['account'] +"'] > input[type='submit']").click();
                 };
             } else {
                 self.log('Invalid callback');
