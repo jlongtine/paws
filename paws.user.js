@@ -126,7 +126,8 @@ Paws.App = (function () {
             } else if (value['region']) {
                 callback = function() {
                     self.log('Switching to region: ' + value['region']);
-                    document.querySelector("#regionMenuContent > a.region[data-region-id='" + value['region'] + "']").click();
+                    // document.querySelector("#regionMenuContent > a.region[data-region-id='" + value['region'] + "']").click();
+                    document.querySelector("#menu--regions a[data-region-id='" + value['region'] + "']").click()
                 };
             } else if (value['account']) {
                 callback = function() {
